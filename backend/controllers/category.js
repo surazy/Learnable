@@ -100,19 +100,20 @@ exports.getCategoryPageDetails = async (req, res) => {
         }
 
         // Get courses for other categories
-        const categoriesExceptSelected = await Category.find({
+        const categoriesExceptSelected = await Category.find({ 
             _id: { $ne: categoryId },
-        })
+         })
 
-        let differentCategory = await Category.findOne(
-            categoriesExceptSelected[getRandomInt(categoriesExceptSelected.length)]
-                ._id
-        )
-            .populate({
-                path: "courses",
-                match: { status: "Published" },
-            })
-            .exec()
+        let differentCategory = null;
+        if (categoriesExceptSelected.length > 0) {
+            const randomIndex = getRandomInt(categoriesExceptSelected.length);
+            differentCategory = await Category.findById(categoriesExceptSelected[randomIndex]._id)
+                .populate({
+                    path: "courses",
+                    match: { status: "Published" },
+                })
+                .exec()
+        }
 
         //console.log("Different COURSE", differentCategory)
         // Get top-selling courses across all categories
@@ -141,6 +142,7 @@ exports.getCategoryPageDetails = async (req, res) => {
             },
         })
     } catch (error) {
+        console.error("Error while fetching category page details:", error);
         return res.status(500).json({
             success: false,
             message: "Internal server error",
