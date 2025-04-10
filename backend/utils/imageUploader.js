@@ -1,20 +1,22 @@
 const cloudinary = require('cloudinary').v2;
 
-exports.uploadImageToCloudinary = async (file, folder) => {
+exports.uploadImageToCloudinary = async (file, folder, height, quality) => {
     try {
-        console.log('File received:', file); // Debug log
-        if (!file || !file.tempFilePath) {
-            throw new Error('File or tempFilePath is missing');
-        }
-
         const options = { folder };
-        const result = await cloudinary.uploader.upload(file.tempFilePath, options);
-        return result;
-    } catch (error) {
-        console.error('Error while uploading image to Cloudinary:', error);
-        throw error;
+        if (height) options.height = height;
+        if (quality) options.quality = quality;
+
+        // options.resourse_type = 'auto';
+        options.resource_type = 'auto';
+        return await cloudinary.uploader.upload(file.tempFilePath, options);
     }
-};
+    catch (error) {
+        console.log("Error while uploading image");
+        console.log(error);
+    }
+}
+
+
 
 // Function to delete a resource by public ID
 exports.deleteResourceFromCloudinary = async (url) => {

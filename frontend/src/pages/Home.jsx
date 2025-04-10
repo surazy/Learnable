@@ -108,7 +108,7 @@ const Home = () => {
                                         transition-all duration-200 hover:scale-95 w-fit'>
                             <div className='flex flex-row items-center gap-2 rounded-full px-10 py-[5px]
                               transition-all duration-200 group-hover:bg-richblack-900'>
-                                <p>Become an Instructor</p>
+                                <p>Become an Memeher</p>
                                 <FaArrowRight />
                             </div>
                         </div>
@@ -122,8 +122,8 @@ const Home = () => {
                         viewport={{ once: false, amount: 0.1 }}
                         className='text-center text-3xl lg:text-4xl font-semibold mt-7  '
                     >
-                        Empower Your Future with
-                        <HighlightText text={"Coding Skills"} />
+                        Empower Your Mind with use full knowledge
+                        
                     </motion.div>
 
                     <motion.div
@@ -133,7 +133,7 @@ const Home = () => {
                         viewport={{ once: false, amount: 0.1 }}
                         className=' mt-4 w-[90%] text-center text-base lg:text-lg font-bold text-richblack-300'
                     >
-                        With our online coding courses, you can learn at your own pace, from anywhere in the world, and get access to a wealth of resources, including hands-on projects, quizzes, and personalized feedback from instructors.
+                        With our online courses, you can learn at your own pace, from anywhere in the world, and get access to a wealth of resources and personalized feedback from instructors.
                     </motion.div>
 
 
@@ -142,9 +142,9 @@ const Home = () => {
                             Learn More
                         </CTAButton>
 
-                        <CTAButton active={false} linkto={"/login"}>
+                        {/* <CTAButton active={false} linkto={"/login"}>
                             Book a Demo
-                        </CTAButton>
+                        </CTAButton> */}
                     </div>
                 </div>
 

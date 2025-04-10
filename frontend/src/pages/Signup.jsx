@@ -1,4 +1,4 @@
-import signupImg from "../assets/Images/signup.png"
+import signupImg from "../assets/Images/begena.webp"
 import Template from "../components/core/Auth/Template"
 
 function Signup() {

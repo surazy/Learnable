@@ -10,11 +10,7 @@ import StudyNotionLogo from "../../assets/Logo/ardeit1.png";
 // footer data
 const BottomFooter = ["Privacy Policy", "Cookie Policy", "Terms"];
 const Resources = [
-  "Articles",
-  "Blog",
-  "Chart Sheet",
-  "Code challenges",
-  "Docs",
+  
   "Projects",
   "Videos",
   "Workspaces",
@@ -103,7 +99,7 @@ const Footer = () => {
                 })}
               </div>
               <h1 className="text-richblack-50 font-semibold text-[16px] mt-7">
-                Community
+                
               </h1>
 
               <div className="flex flex-col gap-2 mt-2">
@@ -113,9 +109,9 @@ const Footer = () => {
                       key={index}
                       className="text-[14px] cursor-pointer hover:text-richblack-50 transition-all duration-200"
                     >
-                      <Link to={ele.split(" ").join("-").toLowerCase()}>
+                      {/* <Link to={ele.split(" ").join("-").toLowerCase()}>
                         {ele}
-                      </Link>
+                      </Link> */}
                     </div>
                   );
                 })}
@@ -178,19 +174,18 @@ const Footer = () => {
 
               <Link to='https://github.com/Aniruddha-Gade' target="__blank" className="text-white hover:underline mr-1"
               >
-                Aniruddha Gade
+                Surazy
               </Link>
             </div>
-            <span> © 2023 Studynotion</span>
+            <span> © 2023 Ardeit</span>
           </div>
 
           <div className="flex items-center">
-            <a href="https://www.linkedin.com/in/aniruddha-gade-a48800231/" className="text-white p-3 hover:bg-richblack-700 rounded-full duration-300" target="_blank" rel="noopener noreferrer">
+            <a href="https://www.linkedin.com/in/surazy/" className="text-white p-3 hover:bg-richblack-700 rounded-full duration-300" target="_blank" rel="noopener noreferrer">
               <ImLinkedin2 size={17} />
             </a>
-            <a href="https://www.github.com/Aniruddha-Gade" className="text-white p-3 hover:bg-richblack-700 rounded-full duration-300" target="_blank" rel="noopener noreferrer">
-              <ImGithub size={17} />
-            </a>
+           
+           
           </div>
 
         </div>
