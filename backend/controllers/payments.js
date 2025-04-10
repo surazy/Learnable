@@ -12,7 +12,6 @@ const CourseProgress = require("../models/courseProgress")
 
 const { default: mongoose } = require('mongoose')
 
-
 // ================ capture the payment and Initiate the 'Rajorpay order' ================
 exports.capturePayment = async (req, res) => {
 
@@ -63,11 +62,11 @@ exports.capturePayment = async (req, res) => {
 
     // initiate payment using Rajorpay
     try {
-        const paymentResponse = await instance.instance.orders.create(options);
+        // const paymentResponse = await instance.instance.orders.create(options);
         // return response
         res.status(200).json({
             success: true,
-            message: paymentResponse,
+            message: "paymentResponse",
         })
     }
     catch (error) {
@@ -81,24 +80,24 @@ exports.capturePayment = async (req, res) => {
 
 // ================ verify the payment ================
 exports.verifyPayment = async (req, res) => {
-    const razorpay_order_id = req.body?.razorpay_order_id;
-    const razorpay_payment_id = req.body?.razorpay_payment_id;
-    const razorpay_signature = req.body?.razorpay_signature;
+    // const razorpay_order_id = req.body?.razorpay_order_id;
+    // const razorpay_payment_id = req.body?.razorpay_payment_id;
+    // const razorpay_signature = req.body?.razorpay_signature;
     const courses = req.body?.coursesId;
     const userId = req.user.id;
-    // console.log(' req.body === ', req.body)
+    // // console.log(' req.body === ', req.body)
 
-    if (!razorpay_order_id || !razorpay_payment_id || !razorpay_signature || !courses || !userId) {
-        return res.status(400).json({ success: false, message: "Payment Failed, data not found" });
-    }
+    // if (!razorpay_order_id || !razorpay_payment_id || !razorpay_signature || !courses || !userId) {
+    //     return res.status(400).json({ success: false, message: "Payment Failed, data not found" });
+    // }
 
-    let body = razorpay_order_id + "|" + razorpay_payment_id;
-    const expectedSignature = crypto
-        .createHmac("sha256", process.env.RAZORPAY_SECRET)
-        .update(body.toString())
-        .digest("hex");
+    // let body = razorpay_order_id + "|" + razorpay_payment_id;
+    // const expectedSignature = crypto
+    //     .createHmac("sha256", process.env.RAZORPAY_SECRET)
+    //     .update(body.toString())
+    //     .digest("hex");
 
-    if (expectedSignature === razorpay_signature) {
+    if (true) {
         //enroll student
         await enrollStudents(courses, userId, res);
         //return res

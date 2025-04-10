@@ -85,6 +85,11 @@ router.post('/getFullCourseDetails', auth, getFullCourseDetails);
 router.get("/getInstructorCourses", auth, isInstructor, getInstructorCourses)
 
 
+
+// router.post("capturePayment", auth, isStudent, (req, res) => {
+
+
+// })
 // Edit Course routes
 router.post("/editCourse", auth, isInstructor, editCourse)
 

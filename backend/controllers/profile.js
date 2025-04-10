@@ -155,45 +155,45 @@ exports.getUserDetails = async (req, res) => {
 // ================ Update User profile Image ================
 exports.updateUserProfileImage = async (req, res) => {
     try {
-        const profileImage = req.files?.profileImage;
+        const file = req.files?.profileImage; // Ensure the key matches the frontend
+        console.log('File received in updateUserProfileImage:', file); // Debug log
+
+        if (!file) {
+            return res.status(400).json({
+                success: false,
+                message: 'No file uploaded',
+            });
+        }
+
+        const result = await uploadImageToCloudinary(file, 'profileImages');
+        console.log('Cloudinary upload result:', result); // Debug log
+
+        if (!result || !result.secure_url) {
+            throw new Error('Failed to upload image to Cloudinary');
+        }
+
+        // Update user profile with the new image URL
         const userId = req.user.id;
-
-        // validation
-        // console.log('profileImage = ', profileImage)
-
-        // upload imga eto cloudinary
-        const image = await uploadImageToCloudinary(profileImage,
-            process.env.FOLDER_NAME, 1000, 1000);
-
-        // console.log('image url - ', image);
-
-        // update in DB 
-        const updatedUserDetails = await User.findByIdAndUpdate(userId,
-            { image: image.secure_url },
+        const updatedUser = await User.findByIdAndUpdate(
+            userId,
+            { profileImage: result.secure_url },
             { new: true }
-        )
-            .populate({
-                path: 'additionalDetails'
+        );
 
-            })
-
-        // success response
-        res.status(200).json({
+        return res.status(200).json({
             success: true,
-            message: `Image Updated successfully`,
-            data: updatedUserDetails,
-        })
-    }
-    catch (error) {
-        console.log('Error while updating user profile image');
-        console.log(error);
+            message: 'Profile image updated successfully',
+            data: updatedUser,
+        });
+    } catch (error) {
+        console.error('Error while updating user profile image:', error);
         return res.status(500).json({
             success: false,
+            message: 'Error while updating profile image',
             error: error.message,
-            message: 'Error while updating user profile image',
-        })
+        });
     }
-}
+};
 
 
 
@@ -202,6 +202,7 @@ exports.updateUserProfileImage = async (req, res) => {
 exports.getEnrolledCourses = async (req, res) => {
     try {
         const userId = req.user.id
+        // console.log('userId = ', userId)
         let userDetails = await User.findOne({ _id: userId, })
             .populate({
                 path: "courses",
@@ -252,12 +253,13 @@ exports.getEnrolledCourses = async (req, res) => {
                 message: `Could not find user with id: ${userDetails}`,
             })
         }
-
+        console.log('userDetails = ', userDetails.courses)
         return res.status(200).json({
             success: true,
             data: userDetails.courses,
         })
     } catch (error) {
+        console.log("Error while fetching enrolled courses", error)
         return res.status(500).json({
             success: false,
             message: error.message,

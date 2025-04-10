@@ -37,16 +37,16 @@ import backgroundImg111 from '../assets/Images/random bg img/coding bg11.jpg'
 
 const randomImges = [
     backgroundImg1,
-    backgroundImg2,
-    backgroundImg3,
-    backgroundImg4,
-    backgroundImg5,
-    backgroundImg6,
-    backgroundImg7,
-    backgroundImg8,
-    backgroundImg9,
-    backgroundImg10,
-    backgroundImg111,
+    // backgroundImg2,
+    // backgroundImg3,
+    // backgroundImg4,
+    // backgroundImg5,
+    // backgroundImg6,
+    // backgroundImg7,
+    // backgroundImg8,
+    // backgroundImg9,
+    // backgroundImg10,
+    // backgroundImg111,
 ];
 
 // hardcoded
@@ -232,7 +232,7 @@ const Home = () => {
 
                     <ExploreMore />
                 </div>
-
+                Get the Skills you 
                 {/*Section 2  */}
                 <div className='bg-pure-greys-5 text-richblack-700 '>
                     <div className='homepage_bg h-[310px]'>

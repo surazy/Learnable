@@ -154,23 +154,27 @@ function CourseDetails() {
   }
 
   // Add to cart Course handler
-  const handleAddToCart = () => {
-    if (user && user?.accountType === ACCOUNT_TYPE.INSTRUCTOR) {
-      toast.error("You are an Instructor. You can't buy a course.")
-      return
-    }
-    if (token) {
-      dispatch(addToCart(response?.data.courseDetails))
-      return
-    }
-    setConfirmationModal({
-      text1: "You are not logged in!",
-      text2: "Please login to add To Cart",
-      btn1Text: "Login",
-      btn2Text: "Cancel",
-      btn1Handler: () => navigate("/login"),
-      btn2Handler: () => setConfirmationModal(null),
-    })
+  // const handleAddToCart = () => {
+  //   if (user && user?.accountType === ACCOUNT_TYPE.INSTRUCTOR) {
+  //     toast.error("You are an Instructor. You can't buy a course.")
+  //     return
+  //   }
+  //   if (token) {
+  //     dispatch(addToCart(response?.data.courseDetails))
+  //     return
+  //   }
+  //   setConfirmationModal({
+  //     text1: "You are not logged in!",
+  //     text2: "Please login to add To Cart",
+  //     btn1Text: "Login",
+  //     btn2Text: "Cancel",
+  //     btn1Handler: () => navigate("/login"),
+  //     btn2Handler: () => setConfirmationModal(null),
+  //   })
+  // }
+
+  const habdleEnrollCourse = () => {
+
   }
 
 
@@ -220,8 +224,9 @@ function CourseDetails() {
             {/* will appear only for small size */}
             <div className="flex w-full flex-col gap-4 border-y border-y-richblack-500 py-4 lg:hidden">
               <p className="space-x-3 pb-4 text-3xl font-semibold text-richblack-5">Rs. {price}</p>
-              <button className="yellowButton" onClick={handleBuyCourse}>Buy Now</button>
-              <button onClick={handleAddToCart} className="blackButton">Add to Cart</button>
+              <button className="yellowButton" onClick={handleBuyCourse}>Enroll</button>
+              {/* <button className="yellowButton" onClick={handleBuyCourse}>Buy Now</button> */}
+              {/* <button onClick={handleAddToCart} className="blackButton">Add to Cart</button> */}
             </div>
           </div>
 
